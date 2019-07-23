@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { ReadComponent } from './read/read.component';
 import { CreateComponent } from './create/create.component';
 
+import { NgxsModule } from '@ngxs/store';
+import { TutorialState } from './state/tutorial.state';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 @NgModule({
-  declarations: [
-    AppComponent,
-    ReadComponent,
-    CreateComponent
-  ],
+  declarations: [AppComponent, ReadComponent, CreateComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxsModule.forRoot([TutorialState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
