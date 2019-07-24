@@ -7,7 +7,7 @@ export class TutorialStateModel {
 }
 
 @State<TutorialStateModel>({
-  name: 'Tutorials',
+  name: 'tutorials',
   defaults: {
     tutorials: [],
   },

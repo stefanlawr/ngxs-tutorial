@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+import { Tutorial } from './../models/tutorial.modal';
+import { TutorialState } from '../state/tutorial.state';
+import { Observable } from 'rxjs';
+import { RemoveTutorial } from '../actions/tutorial.actions';
 
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
-  styleUrls: ['./read.component.scss']
+  styleUrls: ['./read.component.scss'],
 })
 export class ReadComponent implements OnInit {
+  // tutorials$: Observable<Tutorial>;
+  @Select(TutorialState.getTutorials) tutorials$: Observable<Tutorial>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private store: Store) {
+    // this.tutorials$ = this.store.select(state => state.tutorials.tutorials);
   }
 
+  delTutorial(name) {
+    this.store.dispatch(new RemoveTutorial(name));
+  }
+
+  ngOnInit() {}
 }
